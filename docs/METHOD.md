@@ -46,6 +46,14 @@ The lead starts all agents at once, each with a brief (`agents/*.md`). Round 1 h
 | facade | `src/parts/pavilion.js`, `ranges.js`, `src/gothic.js` | the gabled pavilions and side ranges; the shared window kit (bars, cusps, hoods) |
 | look | `src/main.js`, `src/textures.js`, `src/look/`, `src/landscape.js` | sun, sky, tone, stone with weathering, glass, street, 60 trees from the LiDAR |
 
+### How many agents
+Not fixed. One agent per part that can be owned alone: as many agents as the model splits into files
+that nobody else needs to edit. Two agents on one file get in each other's way. Then cut to what the
+usage allowance can carry (it grows with the number of agents running at once), and decide again each
+round: a later round that only has the tower's detail and the backlit views left needs two agents, not
+five. For scale: one building here took 5 agents in one round; Athenaion's whole ancient city took 55
+agents over 9 rounds, at most 12 at a time.
+
 Each agent works in a loop, 6–10 times: **change → render the reference views → look at the strips
 (reference | render | overlay) and measure → change again**. Each judges only its own concern: the
 shape agents judge shape, the look agent judges light and colour.
