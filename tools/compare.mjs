@@ -22,7 +22,7 @@ const page = await browser.newPage({ viewport: { width: 1600, height: 1067 } });
 page.on("console", (m) => { if (m.type() === "error" || m.type() === "warning") console.log("[page]", m.text()); });
 page.on("pageerror", (e) => console.log("[page error]", e.message));
 const t0 = Date.now();
-await page.goto(`http://localhost:8765/index.html?${query}`);
+await page.goto(`http://localhost:${process.env.PORT ?? 8765}/index.html?${query}`);
 await page.waitForFunction(() => window.__ready === true, undefined, { timeout: 180000 });
 console.log(`built in ${((Date.now() - t0) / 1000).toFixed(1)} s`);
 const done = [], used = [];
@@ -40,7 +40,7 @@ if (metrics) { // the model's silhouette from the same cameras (tools/mask.html)
   fs.mkdirSync(`${out}/labels`, { recursive: true });
   const mp = await browser.newPage({ viewport: { width: 800, height: 600 } });
   mp.on("pageerror", (e) => console.log("[mask page error]", e.message));
-  await mp.goto(`http://localhost:8765/tools/mask.html?cut=${cfg.refine.min_height_m}&${query}`);
+  await mp.goto(`http://localhost:${process.env.PORT ?? 8765}/tools/mask.html?cut=${cfg.refine.min_height_m}&${query}`);
   await mp.waitForFunction(() => window.__ready === true, undefined, { timeout: 180000 });
   for (const [i, v] of views.entries()) {
     await mp.setViewportSize({ width: v.width, height: v.height });

@@ -8,6 +8,7 @@
 #   REFS_ONLINE=1                   refs: ask Google for panorama ids and metadata again (free calls) instead of
 #                                   rebuilding from refs/streetview/metadata.json; tiles still come from the cache
 #   QUERY="only=tower"              passed to the page by compare
+#   PORT=8765                       where the page is served (each tool reads $PORT too)
 #   ALLOW_FETCH=1                   refs: buy the Street View tiles that are not cached (billed; needed once in a fresh clone)
 # Street View tiles are bought only with ALLOW_FETCH=1 (see README, "What is billed").
 set -euo pipefail
@@ -15,7 +16,7 @@ cd "$(dirname "$0")"
 CONFIG=${CONFIG:-config/clocktower.json}
 PY=${PY:-python3}
 OUT=${OUT:-out/pipeline/compare}
-PORT=8765
+PORT=${PORT:-8765}
 py() { "$PY" -I "$@"; }
 
 server() {  # the page is served from this folder on :8765; start one if none is running

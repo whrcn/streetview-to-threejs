@@ -23,7 +23,7 @@ const browser = await chromium.launch({ channel: process.env.CHROME_CHANNEL ?? "
 const page = await browser.newPage({ viewport: { width: 800, height: 600 } });
 page.on("console", (m) => console.log("[page]", m.text()));
 page.on("pageerror", (e) => console.log("[page error]", e.message));
-await page.goto(`http://localhost:8765/tools/mask.html?cut=${R.min_height_m}`);
+await page.goto(`http://localhost:${process.env.PORT ?? 8765}/tools/mask.html?cut=${R.min_height_m}`);
 await page.waitForFunction(() => window.__ready === true, undefined, { timeout: 180000 });
 for (const v of views) {
   if (!fs.existsSync(`refs/streetview/masks/${v.file.replace(".jpg", ".png")}`)) throw new Error(`no mask for ${v.file}: run python -I tools/sky_mask.py`);

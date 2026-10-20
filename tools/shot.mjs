@@ -10,7 +10,7 @@ const browser = await chromium.launch({
 const page = await browser.newPage({ viewport: { width: vw, height: vh } });
 page.on("console", (m) => console.log("[page]", m.text()));
 page.on("pageerror", (e) => console.log("[page error]", e.message));
-await page.goto(`http://localhost:8765/index.html${query}`);
+await page.goto(`http://localhost:${process.env.PORT ?? 8765}/index.html${query}`);
 await page.waitForFunction(() => window.__ready === true, undefined, { timeout: 120000 });
 const info = await page.evaluate(() => window.__info);
 console.log(JSON.stringify(info));

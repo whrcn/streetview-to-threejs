@@ -4,7 +4,7 @@ const part = process.argv[2] ?? "tower";
 const browser = await chromium.launch({ channel: process.env.CHROME_CHANNEL ?? "chrome" });
 const page = await browser.newPage();
 page.on("console", (m) => console.log("[page]", m.text()));
-await page.goto("http://localhost:8765/index.html?only=none");
+await page.goto(`http://localhost:${process.env.PORT ?? 8765}/index.html?only=none`);
 await page.waitForFunction(() => window.__ready === true, undefined, { timeout: 180000 });
 const r = await page.evaluate(async (part) => {
   const THREE = await import("three");

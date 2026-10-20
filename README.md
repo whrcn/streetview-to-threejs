@@ -44,6 +44,7 @@ offline from the local cache.
   another Playwright channel) and a GPU for the headless renders.
 - The page is served from this folder at `http://localhost:8765` (`run.sh` starts
   `python3 -m http.server 8765 --bind 127.0.0.1` if nothing is listening, and stops it afterwards).
+  If something else already listens on 8765, it is used as is: pick a free port with `PORT=8777 ./run.sh`.
 - For the references: a Google Maps Platform key with the Map Tiles API, in `$GOOGLE_MAPS_KEY` or
   `~/.gmaps_key` (either the bare key or `export GOOGLE_MAPS_KEY=...`). Never commit it.
 
