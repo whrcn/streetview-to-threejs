@@ -75,7 +75,7 @@ else:
     q = f"session={session}&key={key}"
     # 1. panoramas near the tower (free calls), or the ones the config names
     _, lat_t, lng_t = bearing_to_tower(-36.85, 174.77)
-    locs = [] if SV.get("pano_ids") else None
+    locs = None if SV.get("pano_ids") else []
     for dn in (np.arange(-RADIUS, RADIUS + 1, 15) if locs is not None else []):
         for de in np.arange(-RADIUS, RADIUS + 1, 15):
             if dn * dn + de * de <= RADIUS * RADIUS:
