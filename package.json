@@ -1,0 +1,17 @@
+{
+  "name": "streetview-to-threejs",
+  "private": true,
+  "type": "module",
+  "description": "A building drawn in three.js from code alone, sized by LiDAR and checked against Street View photographs by a team of AI agents.",
+  "license": "MIT",
+  "scripts": {
+    "serve": "python3 -m http.server 8765 --bind 127.0.0.1",
+    "pipeline": "./run.sh"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0"
+  }
+}

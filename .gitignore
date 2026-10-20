@@ -1,0 +1,9 @@
+node_modules/
+out/
+__pycache__/
+# Everything the pipeline downloads or derives is rebuilt by ./run.sh, never committed:
+# LiDAR and aerial derivatives (LINZ, CC BY 4.0) and all Street View imagery and metadata (Google).
+data/*
+!data/.gitkeep
+refs/*
+!refs/.gitkeep
