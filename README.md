@@ -15,6 +15,27 @@ wheel or pinch to zoom; it needs a few seconds to build the model).
 *Renders of the model. No photograph, texture image or 3D asset is used: every mesh and texture is
 generated in code.*
 
+## Photograph against model
+
+From left to right: the Street View photograph, the model, the two laid half over each other. The
+camera moves between three Street View panoramas in front of the building (about −23°, −7° and
++10°); at each one the photograph and the model line up, and between them the photograph crossfades.
+Whole video: [`media/clocktower_compare.mp4`](media/clocktower_compare.mp4).
+
+**The front**
+
+![The front: photograph, model, overlay](media/compare_wide.webp)
+
+**The tower**
+
+![The tower: photograph, model, overlay](media/compare_tower.webp)
+
+**The entrance**
+
+![The entrance: photograph, model, overlay](media/compare_door.webp)
+
+*Street View imagery © Google, shown here for comparison only; it is not part of the model.*
+
 - **How it is made** (the lead, the agents, their rules and briefs): [`docs/METHOD.md`](docs/METHOD.md),
   [`agents/`](agents/), [`docs/CONTRACT.md`](docs/CONTRACT.md), [`docs/ART_BIBLE.md`](docs/ART_BIBLE.md).
 - **What is automatic**: measuring the building, fetching the references, correcting their cameras,
@@ -91,7 +112,8 @@ images from the cache (byte-identical); refine and compare overwrite their outpu
 result for the same model.
 
 Nothing under `data/` or `refs/` is committed: the LiDAR derivatives are rebuilt by `data`, and the
-Street View imagery and metadata are Google's and stay on the machine that fetched them.
+Street View imagery and metadata are Google's and stay on the machine that fetched them (the only
+Street View frames in the repository are the comparison videos in `media/`).
 
 ### References (Street View)
 
