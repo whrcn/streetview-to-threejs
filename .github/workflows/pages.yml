@@ -1,0 +1,40 @@
+# Publishes the model as a web page on GitHub Pages: the page, its code and three.js, nothing else
+# (no data/, refs/ or tools/).
+name: pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --omit=dev --no-audit --no-fund
+      - name: Assemble the site
+        run: |
+          mkdir -p _site/node_modules/three/examples
+          cp -r index.html src config media _site/
+          cp -r node_modules/three/build _site/node_modules/three/
+          cp -r node_modules/three/examples/jsm _site/node_modules/three/examples/
+          cp node_modules/three/LICENSE _site/node_modules/three/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

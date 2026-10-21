@@ -4,9 +4,15 @@ A real building drawn in three.js **from code alone**, sized by public LiDAR and
 View photographs, by a team of Claude Code agents. The first building is the University of Auckland
 Clock Tower (building 105).
 
-![The Clock Tower, rendered from code](media/front.png)
+**Turn it round in your browser: https://whrcn.github.io/streetview-to-threejs/** (drag to turn,
+wheel or pinch to zoom; it needs a few seconds to build the model).
 
-*A render of the model. No photograph, texture image or 3D asset is used: every mesh and texture is
+| | |
+| --- | --- |
+| ![The Clock Tower from Princes St, drawn from code](media/clocktower-front.jpg) | ![The Clock Tower from along Princes St, with trees from the LiDAR](media/clocktower-street.jpg) |
+| ![The tower above the entrance bay, from the steps](media/clocktower-tower.jpg) | ![The upper tower: clock stage, tracery and pinnacles](media/clocktower-tower-close.jpg) |
+
+*Renders of the model. No photograph, texture image or 3D asset is used: every mesh and texture is
 generated in code.*
 
 - **How it is made** (the lead, the agents, their rules and briefs): [`docs/METHOD.md`](docs/METHOD.md),
