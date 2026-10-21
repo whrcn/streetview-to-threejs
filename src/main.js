@@ -92,10 +92,24 @@ if (mask) {
 const post = makePost(renderer, scene, camera, mask ? "low" : quality, { radius: num("aor", 0.7), intensity: num("aoi", 1.0), thickness: num("aot", 1.0) });
 
 if (params.get("view") === "orbit") {
+  // start back from the street, wide enough for the tower on a phone held upright; stay above the
+  // ground and within the street round the building
+  if (!params.get("pos")) {
+    const tall = innerHeight > innerWidth;
+    camera.fov = tall ? 64 : 58; camera.updateProjectionMatrix();
+    camera.position.set(-2, 6, 44); // on Princes St, clear of the trees across it
+  }
+  // seen from above, the ground ends before the horizon: fill below it with haze, not dark ground
+  // (the lighting was made from the sky already, so only the backdrop changes)
+  sky.material.uniforms?.groundColor?.value.setRGB(0.5, 0.53, 0.55);
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(0, 12, 0); controls.update();
+  controls.target.set(0, 15, 0);
+  controls.enableDamping = true;
+  controls.maxPolarAngle = Math.PI / 2 - 0.04;
+  controls.minDistance = 8; controls.maxDistance = 110;
+  controls.update();
   addEventListener("resize", () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); post.setSize(innerWidth, innerHeight); });
-  renderer.setAnimationLoop(() => post.render());
+  renderer.setAnimationLoop(() => { controls.update(); post.render(); });
 }
 if (params.get("overlay") && refImage) {
   const img = Object.assign(document.createElement("img"), { src: refImage });
