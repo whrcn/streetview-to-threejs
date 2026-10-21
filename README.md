@@ -163,3 +163,15 @@ the reference and of the render; plus the mean over views.
 4. The model (`src/`) and `tools/mask.html` still draw the Clock Tower; a new building needs its
    own model module, imported by the page and by `tools/mask.js`, written by a round of agents as
    in `docs/METHOD.md`.
+
+## Acknowledgements
+
+Thanks to [Athenaion](https://github.com/Leonxlnx/athenaion) by Leon Lin: an ancient Greek city built
+entirely in code with three.js by a team of Claude Code agents. It showed this way of working: every
+mesh and texture generated in code, an art bible and a module contract, specialist agents in
+parallel, and each render compared against reference images. This project takes that method from an
+imagined city to a real building, with LiDAR for the sizes and Street View for the references.
+
+Thanks also to LINZ for the open LiDAR and aerial imagery, and to the
+[UoA World Model](https://github.com/pengqianhan/campus-world-model), the campus map this building
+was made for.
